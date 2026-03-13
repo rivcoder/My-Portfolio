@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rashika Portfolio</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<header class="nav">
+
+<div class="logo">Rashika Kaushal Jain</div>
+
+<nav>
+<a href="#hero" class="nav-link">Home</a>
+<a href="#about" class="nav-link">About</a>
+<a href="#projects" class="nav-link">Projects</a>
+<a href="#contact" class="nav-link">Contact</a>
+</nav>
+
+</header>
+
+
+<section class="hero" id="hero">
+
+<div class="hero-text">
+
+<h1 class="reveal">
+Hi, I'm <span>Rashika</span>
+</h1>
+
+<p class="subtitle reveal">
+Aspiring Full-Stack Developer building intelligent data systems and interactive web tools.
+</p>
+
+<div class="buttons reveal">
+
+<button class="magnetic-btn" onclick="scrollToSection('projects')">
+Projects
+</button>
+
+<button class="magnetic-btn" onclick="scrollToSection('contact')">
+Contact
+</button>
+
+</div>
+
+</div>
+
+<div class="avatar glow-card">
+<img src="avatar.jpeg" alt="Rashika Avatar">
+</div>
+
+</section>
+
+
+
+<section class="about" id="about">
+
+<h2 class="section-title reveal">About</h2>
+
+<p class="about-text reveal">
+
+I design and build systems that combine data, AI and user focused interfaces.
+My work focuses on transforming raw information into meaningful insights — whether that means 
+building analytical dashboards, machine learning models, or interactive applications.
+I enjoy working at the intersection of data science, web development and intelligent systems.
+My approach is to not only analyze data but also build tools that allow people to interact
+with it effectively. Currently, I am exploringg areas such as machine learning, data visualization
+and AI-driven applications while building projects that demonstrate real-world problem solving.
+Some of the system I am developing include recommendation engine, disaster intelligence system, 
+and interactive data visualization tools to make complex information easier to understand and use.
+<br>
+<br>
+<br>
+Tech Focus :
+Data Analysis | Machine Learning | Web Development | AI Systems | Data Visualization
+
+</p>
+
+</section>
+
+
+
+<section class="projects" id="projects">
+
+<h2 class="section-title reveal">Projects</h2>
+
+<div class="project-grid">
+
+
+<div class="project-card reveal tilt-card glow-card">
+
+<div class="project-bg"
+style="background-image:url('sales analysis.png');">
+</div>
+
+<div class="project-content">
+
+<h3>Sales Analysis Dashboard</h3>
+
+<p>
+Interactive dashboard for analyzing sales performance and business trends.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="project-card reveal tilt-card glow-card">
+
+<div class="project-bg"
+style="background-image:url('user behavior.png');">
+</div>
+
+<div class="project-content">
+
+<h3>User Behaviour Analysis</h3>
+
+<p>
+Data-driven insights into user activity and engagement patterns.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="project-card reveal tilt-card glow-card">
+
+<div class="project-bg"
+style="background-image:url('data cleaning.png');">
+</div>
+
+<div class="project-content">
+
+<h3>Data Cleaning + Visualization</h3>
+
+<p>
+Pipeline for transforming messy datasets into meaningful visual insights.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="project-card reveal tilt-card glow-card">
+
+<div class="project-bg"
+style="background-image:url('recommendation.png');">
+</div>
+
+<div class="project-content">
+
+<h3>Recommendation System</h3>
+
+<p>
+Machine learning model suggesting personalized recommendations.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="contact" id="contact">
+
+<h2 class="section-title reveal">Contact</h2>
+
+<div class="contact-form reveal">
+
+<input id="name" placeholder="Name">
+
+<input id="email" placeholder="Email">
+
+<textarea id="message" placeholder="Message"></textarea>
+
+<button class="magnetic-btn" onclick="sendMessage()">
+Send Message
+</button>
+
+</div>
+
+</section>
+
+
+<script src="script.js"></script>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>Connect with me:</p>
+  <div class="social-icons">
+    <a href="https://github.com/rivcoder" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+    </a>
+    <a href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGAUsZldGGHZQAAAZzn24AAxnrIcalVintDfVGWMwVjo2xG4w0YJnpE9RHz4NmkUSS8WF0dclwkkADAEJ_DRVsTRtfRf-CuoaEw9QHkuBBn4F66Kk06b8SMwNgjZ46eKHoS72E=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Frashika-kaushal-jain-50498037a%3Futm_source%3Dshare%26utm_campaign%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dandroid_app" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+    </a>
+    <a href="https://www.instagram.com/rashikajn/?utm_source=ig_web_button_share_sheet" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+    </a>
+  </div>
+  <p>© 2026 Rashika Kaushal Jain</p>
+</footer>
+
+
+</body>
+</html>
