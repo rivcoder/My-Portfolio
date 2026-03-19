@@ -1,0 +1,456 @@
+/* =========================
+RESET
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Inter', sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background: #15292E;
+}
+
+
+/* =========================
+NAVBAR
+========================= */
+
+.nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:#075a58;
+backdrop-filter:blur(12px);
+z-index:100;
+color: #F8FAFC
+}
+
+.logo{
+font-size:18px;
+font-weight:600;
+}
+
+.nav a{
+color:#E2E8F0;
+text-decoration:none;
+margin-left:30px;
+opacity:.6;
+transition:.3s;
+}
+
+.nav a:hover,
+.nav a.active{
+opacity:1;
+color:#F8FAFC;
+}
+
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 10%;
+}
+
+.hero-text{
+max-width:600px;
+color: #ecfdfc;
+}
+
+.intro{
+opacity:.6;
+margin-bottom:10px;
+}
+
+.main-title{
+font-size:80px;
+line-height:1;
+margin-bottom:20px;
+}
+
+.main-title span{
+color:#cdfbf9;
+}
+
+.subtitle{
+opacity:.7;
+line-height:1.6;
+margin-bottom:30px;
+}
+
+
+/* =========================
+BUTTONS
+========================= */
+
+.buttons button,
+.contact button{
+
+padding:14px 30px;
+margin-right:15px;
+
+background:#7F4737;
+border:1px solid rgba(255,255,255,0.1);
+color:white;
+
+cursor:pointer;
+border-radius:10px;
+
+transition:.3s;
+}
+
+.buttons button:hover,
+.contact button:hover{
+background:#C59F7B;
+transform:translateY(-3px);
+}
+
+
+/* =========================
+AVATAR (CLEAN GLOW)
+========================= */
+
+.avatar{
+position:relative;
+}
+
+.avatar img{
+height:400px;
+border-radius:20px;
+position:relative;
+z-index:2;
+}
+
+.avatar::after{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:420px;
+height:420px;
+background:radial-gradient(circle, rgba(255,74,74,0.15), transparent 60%);
+filter:blur(60px);
+z-index:1;
+}
+
+
+/* =========================
+SECTIONS
+========================= */
+
+section{
+padding:100px 10%;
+}
+
+.section-title{
+font-size:42px;
+margin-bottom:40px;
+text-align:center;
+color: #ecfdfc;
+}
+
+.about-text{
+max-width:800px;
+margin:auto;
+line-height:1.8;
+opacity:.8;
+color: #d5fbfa;
+}
+
+
+/* =========================
+PROJECT GRID
+========================= */
+
+.project-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:40px;
+}
+
+
+/* =========================
+FLIP CARD (FIXED)
+========================= */
+
+.project-card{
+height:360px;
+perspective:1000px;
+cursor:pointer;
+}
+
+.card-inner{
+width:100%;
+height:100%;
+position:relative;
+transform-style:preserve-3d;
+transition:transform 0.8s;
+}
+
+/* CLICK FLIP */
+.project-card.flipped .card-inner{
+transform:rotateY(180deg);
+}
+
+
+/* FRONT + BACK */
+
+.card-front,
+.card-back{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+backface-visibility:hidden;
+border-radius:20px;
+overflow:hidden;
+}
+
+/* FRONT */
+
+.card-front{
+background:#ecfdfc;
+}
+
+.project-bg{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+filter:brightness(70%);
+}
+
+.project-content{
+position:absolute;
+bottom:20px;
+left:20px;
+right:20px;
+z-index:2;
+}
+
+.project-content h3{
+font-size:22px;
+margin-bottom:5px;
+}
+
+.project-content p{
+opacity:.7;
+font-size:14px;
+}
+
+
+/* BACK */
+
+.card-back{
+background:#0b8f8b;
+transform:rotateY(180deg);
+padding:25px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+color: #021e1d;
+letter-spacing: 3px;
+font-weight: 700;
+}
+
+.card-back h3{
+margin-bottom:15px;
+color: #ecfdfc;
+}
+
+.card-back p{
+font-size:14px;
+opacity:.75;
+margin-bottom:15px;
+}
+
+.card-back ul{
+list-style:none;
+font-size:13px;
+opacity:.8;
+}
+
+.card-back li{
+margin-bottom:8px;
+}
+
+
+/* =========================
+CONTACT
+========================= */
+
+/* =========================
+CTA UPGRADE
+========================= */
+
+.contact{
+text-align:center;
+}
+
+.contact-container{
+max-width:600px;
+margin:auto;
+}
+
+.contact-text{
+font-size:16px;
+opacity:.75;
+margin-bottom:30px;
+line-height:1.6;
+color: #ecfdfc;
+}
+
+.contact-box{
+background:#054b49;
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.contact input,
+.contact textarea{
+
+display:block;
+margin:12px auto;
+width:100%;
+
+padding:14px;
+
+background: #d5d5d5;
+border:1px solid rgba(255,255,255,0.08);
+color:white;
+
+border-radius:10px;
+transition:.3s;
+}
+
+.contact input:focus,
+.contact textarea:focus{
+outline:none;
+border-color:#cdfbf9;
+}
+
+.contact textarea{
+min-height:100px;
+resize:none;
+}
+
+.contact button{
+margin-top:10px;
+width:100%;
+}
+
+.contact-alt{
+margin-top:25px;
+font-size:14px;
+opacity:.6;
+color: #ecfdfc;
+font-size: x-large;
+}
+
+.contact-alt span{
+color:#ecfdfc;
+font-weight:700;
+}
+/* =========================
+FOOTER + ICONS (FIXED)
+========================= */
+
+.footer{
+text-align:center;
+padding:40px 10%;
+background:#054442;
+color: #E2E8F0;
+}
+
+.social-icons{
+margin-top:15px;
+}
+
+.social-icons img{
+width:28px;
+height:28px;
+margin:0 10px;
+filter:invert(1);
+opacity:.7;
+transition:.3s;
+}
+
+.social-icons img:hover{
+opacity:1;
+transform:scale(1.2);
+}
+
+
+/* =========================
+REVEAL
+========================= */
+
+.reveal{
+opacity:0;
+transform:translateY(30px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+
+/* =========================
+CURSOR
+========================= */
+
+.cursor{
+width:14px;
+height:14px;
+border:2px solid #73f3ef;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:999;
+}
+
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.main-title{
+font-size:50px;
+}
+
+.avatar img{
+height:280px;
+margin-top:40px;
+}
+
+}
