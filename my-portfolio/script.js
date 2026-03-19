@@ -1,84 +1,76 @@
+window.hi/* =========================
+SAFE INIT
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+
 /* =========================
-CUSTOM CURSOR
+CUSTOM CURSOR (DESKTOP ONLY)
 ========================= */
 
 const cursor = document.querySelector(".cursor")
 
-document.addEventListener("mousemove",(e)=>{
+if (cursor && window.innerWidth > 768) {
 
+document.addEventListener("mousemove", (e) => {
 cursor.style.left = e.clientX + "px"
 cursor.style.top = e.clientY + "px"
-
 })
 
+document.addEventListener("click", () => {
+cursor.style.transform = "translate(-50%,-50%) scale(0.7)"
 
-
-/* =========================
-MAGNETIC BUTTONS
-========================= */
-
-const magnets = document.querySelectorAll(".magnetic-btn")
-
-magnets.forEach(btn => {
-
-btn.addEventListener("mousemove",(e)=>{
-
-const rect = btn.getBoundingClientRect()
-
-const x = e.clientX - rect.left - rect.width/2
-const y = e.clientY - rect.top - rect.height/2
-
-btn.style.transform = `translate(${x*0.3}px, ${y*0.3}px)`
-
+setTimeout(() => {
+cursor.style.transform = "translate(-50%,-50%) scale(1)"
+}, 100)
 })
 
-btn.addEventListener("mouseleave",()=>{
-
-btn.style.transform = "translate(0,0)"
-
-})
-
-})
-
+} else if (cursor) {
+cursor.style.display = "none"
+}
 
 
 /* =========================
 SMOOTH SCROLL
 ========================= */
 
-function scrollToSection(id){
+window.scrollToSection = function(id) {
 
-document.getElementById(id).scrollIntoView({
-behavior:"smooth"
+const el = document.getElementById(id)
+if (!el) return
+
+const offset = 80
+const y = el.getBoundingClientRect().top + window.pageYOffset - offset
+
+window.scrollTo({
+top: y,
+behavior: "smooth"
 })
 
 }
 
 
-
 /* =========================
-SCROLL REVEAL
+SCROLL REVEAL (ONCE)
 ========================= */
 
 const reveals = document.querySelectorAll(".reveal")
 
-function revealOnScroll(){
+function revealOnScroll() {
 
 const windowHeight = window.innerHeight
 
-reveals.forEach((el,index)=>{
+reveals.forEach((el, index) => {
 
-const elementTop = el.getBoundingClientRect().top
-const visible = 120
+if (el.classList.contains("active")) return
 
-if(elementTop < windowHeight - visible){
+const top = el.getBoundingClientRect().top
 
-setTimeout(()=>{
-
+if (top < windowHeight - 120) {
+setTimeout(() => {
 el.classList.add("active")
-
-}, index * 120)
-
+}, index * 80)
 }
 
 })
@@ -86,111 +78,108 @@ el.classList.add("active")
 }
 
 window.addEventListener("scroll", revealOnScroll)
-
 revealOnScroll()
 
 
-
 /* =========================
-CONTACT FORM
+NAV ACTIVE LINK
 ========================= */
 
-function sendMessage(){
+const sections = document.querySelectorAll("section")
+const navLinks = document.querySelectorAll(".nav-link")
 
-let name = document.getElementById("name").value
-let email = document.getElementById("email").value
-let message = document.getElementById("message").value
+window.addEventListener("scroll", () => {
 
-fetch("/contact",{
+let current = ""
 
-method:"POST",
+sections.forEach(sec => {
+const top = window.scrollY
+const offset = sec.offsetTop - 150
+const height = sec.offsetHeight
 
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-name:name,
-email:email,
-message:message
-})
-
-})
-.then(res => res.json())
-.then(data => {
-
-alert("Message Sent ✔")
-
-})
-.catch(err => {
-
-alert("Error sending message")
-
-})
-
+if (top >= offset && top < offset + height) {
+current = sec.getAttribute("id")
 }
+})
 
+navLinks.forEach(link => {
+link.classList.remove("active")
+
+if (link.getAttribute("href") === "#" + current) {
+link.classList.add("active")
+}
+})
+
+})
 
 
 /* =========================
-3D PROJECT CARD TILT
+MAGNETIC BUTTONS (SMOOTH)
+========================= */
+
+const magnets = document.querySelectorAll(".magnetic-btn")
+
+magnets.forEach(btn => {
+
+btn.addEventListener("mousemove", (e) => {
+
+const rect = btn.getBoundingClientRect()
+
+const x = e.clientX - rect.left - rect.width / 2
+const y = e.clientY - rect.top - rect.height / 2
+
+btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`
+})
+
+btn.addEventListener("mouseleave", () => {
+btn.style.transform = "translate(0,0)"
+})
+
+})
+
+
+/* =========================
+CARD FLIP (CLICK BASED)
 ========================= */
 
 const cards = document.querySelectorAll(".project-card")
 
 cards.forEach(card => {
 
-card.addEventListener("mousemove",(e)=>{
+card.addEventListener("click", () => {
 
-const rect = card.getBoundingClientRect()
-
-const x = e.clientX - rect.left
-const y = e.clientY - rect.top
-
-card.style.setProperty("--x", x + "px")
-card.style.setProperty("--y", y + "px")
-
-const centerX = rect.width / 2
-const centerY = rect.height / 2
-
-const rotateX = (y - centerY) / 15
-const rotateY = (centerX - x) / 15
-
-card.style.transform =
-`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`
-
+// close all others
+cards.forEach(c => {
+if (c !== card) c.classList.remove("flipped")
 })
 
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform =
-"rotateX(0deg) rotateY(0deg) scale(1)"
+// toggle current
+card.classList.toggle("flipped")
 
 })
 
 })
-
 
 
 /* =========================
-CURSOR INTERACTION WITH CARDS
+CONTACT → EMAIL REDIRECT
 ========================= */
 
-cards.forEach(card=>{
+window.sendMessage = function() {
 
-card.addEventListener("mouseenter",()=>{
+const name = document.getElementById("name")?.value || ""
+const email = document.getElementById("email")?.value || ""
+const message = document.getElementById("message")?.value || ""
 
-cursor.style.transform =
-"translate(-50%,-50%) scale(1.3)"
+const subject = encodeURIComponent(`Message from ${name}`)
+const body = encodeURIComponent(
+`Name: ${name}\nEmail: ${email}\n\n${message}`
+)
 
-})
+window.location.href =
+`mailto:rashika.k.jain@gmail.com?subject=${subject}&body=${body}`
 
-card.addEventListener("mouseleave",()=>{
+}
 
-cursor.style.transform =
-"translate(-50%,-50%) scale(1)"
-
-})
 
 })
